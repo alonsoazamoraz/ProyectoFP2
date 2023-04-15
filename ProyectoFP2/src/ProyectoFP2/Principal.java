@@ -11,6 +11,12 @@ public class Principal {
 		
 		Comunidad comunidad = new Comunidad();
 		EmpresaLimpieza empresa = new EmpresaLimpieza("La Más Limpia", "Calle Toledo", 10);
+		try {
+			leerVecinos("Vecinos.txt", comunidad);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
 		
 	}
 	
@@ -70,12 +76,10 @@ public class Principal {
 			
 			switch (opcion) {
 			case 1: 
-				System.out.println();
-				
-				
+				System.out.println(leerVecinos("Vecinos.txt", comunidad));
 				break;
-				
 			case 2:
+				System.out.println(v.addPeticion());
 				break;
 			case 3:
 				break;
@@ -88,7 +92,7 @@ public class Principal {
 			case 7: 
 				break;
 			case 8:
-				System.out.println("");
+				System.out.println("Gracias. Vuelva cuando requiera de algún servicio.");
 				break;
 				
 			}
