@@ -1,71 +1,81 @@
-package Edificio;
-
-import java.util.Arrays;
+package edificio;
 
 public class Comunidad {
-	private static int nEscalera;
-	private int nVecino;
-	private Vecino [] vecinos;
-
+	private int nEscaleras;
+	private Vecino[] vecinos;
+	private int nVecinos;
+	
+	public Comunidad( int nEscaleras) {
+		this.nEscaleras = nEscaleras;
+		Vecino [] vecinos = new Vecino [11];
+		this.nVecinos = 0;
+	}
 
 	
-		  
-		public Comunidad(int nEscalera, int nVecino) {
-		super();
-		this.nEscalera = nEscalera;
-		this.nVecino = nVecino;
-		Vecino [] vecinos = new Vecino [nVecino];
+
+	public Vecino[] getVecinos() {
+		return vecinos;
 	}
 
 
-		 public int getnEscalera() {
-			return nEscalera;
+
+	public void setVecinos(Vecino[] vecinos) {
+		this.vecinos = vecinos;
+	}
+
+
+
+	public int getnEscaleras() {
+		return nEscaleras;
+	}
+
+	public void setnEscaleras(int nEscaleras) {
+		this.nEscaleras = nEscaleras;
+	}
+	
+	public String getNombreVecino(int num) {
+		return vecinos[num].getNombre();
+	}
+	
+	public void setNombreVecino(int num, String nombre) {
+		vecinos[num].setNombre(nombre);
+	}
+	
+	public String getNifVecino(int num) {
+		return vecinos[num].getNif();
+	}
+	
+	public void setNifVecino(int num, String nif) {
+		vecinos[num].setNif(nif);
+	}
+	
+	public String getnPisoVecino(int num) {
+		return vecinos[num].getnPiso();
+	}
+	
+	public void setnPisoVecino(int num, String nPiso) {
+		vecinos[num].setnPiso(nPiso);
+	}
+	
+	public double CalculoAnualEmpresaLimpieza (EmpresaLimpieza empresa) {
+		return empresa.getCoste()*nEscaleras*12;
+	}
+	
+	public void addVecino(Vecino vecino) {
+		if (nVecinos < 11) {
+			vecinos[nVecinos] = vecino;
+			nVecinos++;
 		}
-
-
-
-		public void setnEscalera(int nEscalera) {
-			this.nEscalera = nEscalera;
+	}
+	
+	public String toString() {
+		String result = "";
+		result = "Número de escaleras: " + nEscaleras + ", número de vecinos " + nVecinos + "\n";
+		for (int i = 0; i < vecinos.length; i++) {
+			result += vecinos[i].toString();
 		}
+		return result;
+	}
+	
 
-
-
-		public int getnVecino() {
-			return nVecino;
-		}
-
-
-
-		public void setnVecino(int nVecino) {
-			this.nVecino = nVecino;
-		}
-
-
-
-		public Vecino[] getVecinos() {
-			return vecinos;
-		}
-
-
-		public void setVecinos(Vecino[] vecinos) {
-			this.vecinos = vecinos;
-		}
-
-
-		public static double CalculoEmpresaLimpieza (EmpresaLimpieza empresa) {
-			  return empresa.getCoste()*nEscalera*12;
-		  }
-		 public void addVecino (Vecino vecino) {
-				if (nVecino < vecinos.length) 
-				vecinos [nVecino] = vecino;
-				nVecino++;
-		  }
-
-		public String toString() {
-			return "Comunidad [nEscalera=" + nEscalera + ", nVecino=" + nVecino + ", Vecinos="
-					+ Arrays.toString(vecinos) + "]";
-		}
-		  
-
-		
-		}
+}

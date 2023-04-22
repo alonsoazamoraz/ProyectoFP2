@@ -1,9 +1,8 @@
-package Edificio;
+package edificio;
 public class PeticionDeMejora {
 	private String descripcion;
 	private int urgencia;
 	public PeticionDeMejora(String descripcion, int urgencia) {
-		super();
 		this.descripcion = descripcion;
 		this.urgencia = urgencia;
 	}

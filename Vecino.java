@@ -1,6 +1,5 @@
-package Edificio;
+package edificio;
 
-import java.util.Arrays;
 
 abstract class Vecino implements Constantes {
 protected String nombre;
@@ -32,11 +31,20 @@ public String getnPiso() {
 public void setnPiso(String nPiso) {
 	this.nPiso = nPiso;
 }
-public PeticionDeMejora[] getPeticiones() {
-	return peticiones;
+public String getDescripcionPeticion(int num) {
+	return peticiones[num].getDescripcion();
 }
-public void setPeticiones(PeticionDeMejora[] peticiones) {
-	this.peticiones = peticiones;
+
+public void setDescripcionPeticion(int num, String descripcion) {
+	peticiones[num].setDescripcion(descripcion);
+}
+
+public int getUrgenciaPeticion(int num) {
+	return peticiones[num].getUrgencia();
+}
+
+public void setUrgenciaPeticion(int num, int urgencia) {
+	peticiones[num].setUrgencia(urgencia);
 }
 
 public void addPeticion (PeticionDeMejora peticion) {
@@ -47,8 +55,14 @@ public void addPeticion (PeticionDeMejora peticion) {
 	
 }
 public String toString() {
-	return "Vecino [nombre=" + nombre + ", nif=" + nif + ", nPiso=" + nPiso + ", peticiones="
-			+ Arrays.toString(peticiones) + ", nPeticion=" + nPeticion + "]";
-}  
+	String result = "";
+	result = "Nombre del vecino: " + nombre + ", NIF del vecino: " + nif + ", número de piso: " + nPiso + "\n";
+	for (int i = 0; i < peticiones.length; i++) {
+		result += peticiones[i].toString();
+	}
+	return result;
 }
+
+}
+
 

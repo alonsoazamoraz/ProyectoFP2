@@ -1,8 +1,8 @@
-package Edificio;
+package edificio;
 public class EmpresaLimpieza {
 private String nombre;
 private String direccion;
-private double coste;
+private double coste = 10;
 
 
  public EmpresaLimpieza(String nombre, String direccion, double coste) {

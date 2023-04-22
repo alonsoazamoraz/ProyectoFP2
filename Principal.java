@@ -1,31 +1,23 @@
-package Edificio;
-
+package edificio;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.*;
-class Principal implements Constantes {
+public class Principal implements Constantes {
 	final static Scanner CONSOLA = new Scanner(System.in);
-	public static void main (String[]args) throws IOException {
-		EmpresaLimpieza empresa = new EmpresaLimpieza("La Más Limpia", "Calle Toledo", 10);
-		
-		int nEscaleras;
-		System.out.println("Antes de empezar, indiquenos cuantas escaleras tiene el edificio");
-		nEscaleras = CONSOLA.nextInt();
-		Comunidad comunidad = new Comunidad(11,nEscaleras);
-		try {
-			leerVecinos("Vecinos.txt", comunidad);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		gestionarComunidad(comunidad, empresa);
-		
-		
-	}
+	public static void main(String[] args) throws IOException {
+	EmpresaLimpieza empresa = new EmpresaLimpieza("La Más Limpia", "Calle Toledo", 10);
+	
+	int nEscaleras;
+	System.out.println("Antes de empezar, indiquenos cuántas escaleras tiene el edificio.");
+	nEscaleras = CONSOLA.nextInt();
+	Comunidad comunidad = new Comunidad(nEscaleras);
+	gestionarComunidad(comunidad, empresa);
+
+	
+}
+
 	
 	public static void leerVecinos(String cadena,Comunidad comunidad)throws IOException{
-		
 	    File f=new File(cadena);
 	    Scanner nombre_f = new Scanner (f);
 	    while (nombre_f.hasNext()){
@@ -40,22 +32,30 @@ class Principal implements Constantes {
 	       System.out.println(anio);
 	       comunidad.addVecino(new Propietario (nombre,nif,piso,anio));
 		
-	      } else
-	      {
+	      } else {
 	    	  double mensualidad=Double.parseDouble(nombre_f.next());
 	    	  System.out.println(mensualidad);
 	    	  comunidad.addVecino(new Inquilino (nombre,nif,piso,mensualidad));
-	    	  
+	    
 	      }
 	      
-	    	
+	    
 	      
 	    }
 	    nombre_f.close();
-	}
-	public static String mostrarVecinos(String cadena, Comunidad comunidad) throws IOException {
-		leerVecinos("Vecinos.txt",comunidad);
-		return cadena;
+	  
+	    
+		
+		}
+		
+	
+	public static  void mostrarVecinos(Comunidad comunidad) throws IOException {
+		LeerFichero.leerVecinos("Vecinos.txt", comunidad);
+		try {
+			leerVecinos("Vecinos.txt", comunidad);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	public static void addMejora () {
@@ -65,7 +65,7 @@ class Principal implements Constantes {
 		urgencia = CONSOLA.nextInt();
 		System.out.println("Por favor desarrolla su petición de mejora");
 		String descripcion;
-		descripcion = CONSOLA.toString();
+		descripcion = CONSOLA.next();
 		PeticionDeMejora peticion = new PeticionDeMejora(descripcion,urgencia);
 		System.out.println("Gracias, vuelva pronto");
 		
@@ -96,8 +96,7 @@ class Principal implements Constantes {
 			opcion = menu();
 			switch (opcion) {
 			case 1:
-				String cadena = null;
-				System.out.println(mostrarVecinos(cadena,comunidad));
+				mostrarVecinos(comunidad);
 				break;
 				
 			case 2: 
@@ -116,7 +115,9 @@ class Principal implements Constantes {
 				System.out.println();
 						break;
 			case 7: 
-				System.out.println (Comunidad.CalculoEmpresaLimpieza (empresa));
+				double coste = comunidad.CalculoAnualEmpresaLimpieza (empresa);
+				System.out.println(coste);
+						break;
 			case 8:
 				System.out.println ("Gracias, vuelva cuando requiera de algún servicio");
 			
@@ -128,6 +129,11 @@ class Principal implements Constantes {
 			} while (opcion !=8);
 		}
 
+	public void CalculoImpuestoTotal(Comunidad comunidad, Vecino vecino) {
+		
+	}
+
+
 	public double CalculoImpuesto() {
 		return 0;
 	}
@@ -138,8 +144,10 @@ class Principal implements Constantes {
 
 
 
+
 	
 	
 
 
+	
 	

@@ -1,4 +1,4 @@
-package Edificio;
+package edificio;
 public class Inquilino extends Vecino {
 private double pagoMensual;
 
