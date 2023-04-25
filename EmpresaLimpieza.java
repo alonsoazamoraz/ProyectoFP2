@@ -1,8 +1,8 @@
-package edificio;
+package Edificio;
 public class EmpresaLimpieza {
 private String nombre;
 private String direccion;
-private double coste = 10;
+private double coste;
 
 
  public EmpresaLimpieza(String nombre, String direccion, double coste) {
@@ -18,9 +18,6 @@ public String getNombre() {
 }
 
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
 
 
 public String getDireccion() {
@@ -28,19 +25,11 @@ public String getDireccion() {
 }
 
 
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
-}
-
 
 public double getCoste() {
 	return coste;
 }
 
-
-public void setCoste(double coste) {
-	this.coste = coste;
-}
 
 
 public String toString() {

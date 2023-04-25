@@ -1,4 +1,4 @@
-package edificio;
+package Edificio;
 public class Inquilino extends Vecino {
 private double pagoMensual;
 
@@ -16,7 +16,7 @@ public double getPagoMensual() {
 public void setPagoMensual(double pagoMensual) {
 	this.pagoMensual = pagoMensual;
 }
-public String toString() {
+public  String toString() {
 	return "Pago Mensual: " +pagoMensual+" ";
 }
 public double CalculoImpuesto () {

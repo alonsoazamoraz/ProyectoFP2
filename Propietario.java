@@ -1,4 +1,4 @@
-package edificio;
+package Edificio;
 public class Propietario extends Vecino {
 	private int añoPiso;
 	

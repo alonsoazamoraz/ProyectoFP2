@@ -1,17 +1,16 @@
-package edificio;
+package Edificio;
 
-
-abstract class Vecino implements Constantes {
-protected String nombre;
-protected String nif;
-protected String nPiso;
-protected PeticionDeMejora [] peticiones;
+abstract class Vecino implements Constantes { //La clase vecino será abstacta, implementamos el metodo CalculoImpuesto el cual es abstracto y ademas implementamos constantes.
+protected  String nombre;
+protected  String nif;   // Importante resaltar que al tratarse de una relacion de herencia las variables serán protected
+protected  String nPiso;
+protected  PeticionDeMejora [] peticiones;
 protected int nPeticion=0;
 public Vecino(String nombre, String nif, String nPiso) {
 	this.nombre = nombre;
 	this.nif = nif;
 	this.nPiso = nPiso;
-	PeticionDeMejora[] Peticiones = new PeticionDeMejora [10];
+	this.peticiones = new PeticionDeMejora [10]; //cambiamos el constructor para las peticiones 
 }
 public String getNombre() {
 	return nombre;
@@ -47,22 +46,29 @@ public void setUrgenciaPeticion(int num, int urgencia) {
 	peticiones[num].setUrgencia(urgencia);
 }
 
-public void addPeticion (PeticionDeMejora peticion) {
+public PeticionDeMejora[] getPeticiones() {
+	return peticiones;
+}
+public int getnPeticion() {
+	return nPeticion;
+}
+
+public void addPeticion (PeticionDeMejora peticion) throws MaximoPeticionesException { 
+	// Creamos el metodo addPeticion para añadir peticiones a un vecino, le añadimos también una excepcion por si se pasa de 10 peticiones
 	if (nPeticion < 10) {
 	peticiones[nPeticion] = peticion;
 	nPeticion++;
+	} else
+		throw new MaximoPeticionesException();
+
 }
+public abstract double CalculoImpuesto(); //Declaramos el método abstracto CalculoImpuesto.
+
+
 	
-}
+
 public String toString() {
-	String result = "";
-	result = "Nombre del vecino: " + nombre + ", NIF del vecino: " + nif + ", número de piso: " + nPiso + "\n";
-	for (int i = 0; i < peticiones.length; i++) {
-		result += peticiones[i].toString();
-	}
-	return result;
+	return "Nombre del vecino: " + nombre + ", NIF del vecino: " + nif + ", número de piso: " + nPiso + "\n";
 }
 
 }
-
-
